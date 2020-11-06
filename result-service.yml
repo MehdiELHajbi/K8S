@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: api-result-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: "result-service"
     port: 5001
