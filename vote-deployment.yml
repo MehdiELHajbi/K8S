@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+
+kind : Deployment
+
+metadata: 
+    name: vote-app-deployment
+    labels:
+       app: myapp
+       type: vote-app
+
+spec:
+  template: 
+    metadata:
+      name: vote-app-pod
+      labels:
+         app: myapp
+         type: fronted-vote-app
+    spec:
+      containers:
+        - name: vote-app
+          image: docker/example-voting-app-vote
+          ports: 
+            - containerPort: 80
+  replicas: 1
+  selector:
+     matchLabels :
+        app: myapp
+        type:  fronted-vote-app         
