@@ -1,0 +1,30 @@
+apiVersion : apps/v1
+
+kind : Deployment
+
+metadata : 
+   name : db-deployment
+   labels :
+      app: myapp
+      type: database
+spec:
+  template:
+    metadata:
+       name: db-pod
+       labels:
+         app: myapp
+         type: postgres-db
+    spec:
+      containers: 
+       - name: postgres
+         image: postgres:9.4
+         env:
+           - name: POSTGRES_HOST_AUTH_METHOD
+             value: trust       
+         ports:
+           - containerPort: 5432
+  replicas: 1
+  selector: 
+     matchLabels:
+       app: myapp
+       type: postgres-db
