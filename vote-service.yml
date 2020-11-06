@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: api-vote-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - name: "vote-service"
     port: 5000
